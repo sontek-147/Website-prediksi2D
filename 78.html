@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREDIKSI 2D 80 LINE AI</title>
+    <style>
+        :root {
+            --primary: #00ffaa;
+            --secondary: #0066ff;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #ffffff;
+            --gray: #bbbbbb;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: var(--darker);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 750px;
+            border: 1px solid #333;
+        }
+        
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 170, 0.3);
+            font-size: 28px;
+        }
+        
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .input-section, .output-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        input, select, button, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background-color: #252525;
+            color: var(--light);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        textarea {
+            min-height: 80px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 255, 170, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        
+        button:hover {
+            background-color: #0055dd;
+            transform: translateY(-2px);
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .result {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary);
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #252525;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        
+        .history {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #252525;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        
+        .history-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+            font-size: 13px;
+        }
+        
+        .lines-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #252525;
+            border-radius: 10px;
+            border: 1px solid #333;
+            text-align: center;
+            font-family: monospace;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .ai-highlight {
+            color: #BB86FC;
+            font-weight: bold;
+        }
+        
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .ai-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .ai-box {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+        
+        .copy-btn {
+            background-color: #4CAF50;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #3e8e41;
+        }
+        
+        .paste-btn {
+            background-color: #FF9800;
+            margin-top: 10px;
+        }
+        
+        .paste-btn:hover {
+            background-color: #F57C00;
+        }
+        
+        .timestamp {
+            color: var(--gray);
+            font-size: 12px;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #252525;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 4px;
+        }
+        
+        .copy-paste-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PREDIKSI 2D 80 LINE AI</h1>
+        
+        <div class="header-info">
+            <div id="current-date">Tanggal: --/--/----</div>
+            <div id="current-time">Jam: --:--:--</div>
+        </div>
+        
+        <div class="input-section">
+            <h2 class="section-title">INPUT DATA</h2>
+            <label for="input4d">Masukkan 4 Digit Angka:</label>
+            <input type="number" id="input4d" min="0" max="9999" placeholder="Contoh: 6789">
+            
+            <label for="prediction-type">Jenis Prediksi:</label>
+            <select id="prediction-type">
+                <option value="standard">Standard Prediction</option>
+                <option value="ai">AI Prediction</option>
+                <option value="combination">Kombinasi AI+Manual</option>
+                <option value="special">Special Formula</option>
+            </select>
+            
+            <div class="button-group">
+                <button id="predictBtn">GENERATE PREDIKSI</button>
+                <button id="resetBtn" style="background-color:#f44336">RESET</button>
+            </div>
+            
+            <div class="copy-paste-section">
+                <label for="pasteData">Tempel 2D 80 Line di sini:</label>
+                <textarea id="pasteData" placeholder="Tempel angka 2D 80 line dengan format: 00*01*02*...*79"></textarea>
+                <button id="pasteBtn" class="paste-btn">PROSES DATA TEMPELAN</button>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h2 class="section-title">HASIL PREDIKSI</h2>
+            <div class="result" id="predictionResult">-- --</div>
+            <div class="timestamp" id="prediction-time"></div>
+            
+            <div class="button-group">
+                <button id="copyBtn" class="copy-btn">SALIN HASIL</button>
+                <button id="saveBtn" style="background-color:#9C27B0">SIMPAN RIWAYAT</button>
+            </div>
+            
+            <h3 class="section-title">80 LINE PREDICTION</h3>
+            <div class="lines-container" id="linesPrediction">Hasil prediksi akan muncul di sini...</div>
+            
+            <div class="ai-features">
+                <div class="ai-box">
+                    <h3 class="section-title">AI ANALISIS</h3>
+                    <div id="aiAnalysis">Menunggu analisis...</div>
+                </div>
+                <div class="ai-box">
+                    <h3 class="section-title">STATISTIK</h3>
+                    <div id="statsInfo">Menunggu data...</div>
+                </div>
+            </div>
+            
+            <h3 class="section-title">RIWAYAT PREDIKSI</h3>
+            <div class="history" id="predictionHistory"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const predictBtn = document.getElementById('predictBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const pasteBtn = document.getElementById('pasteBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const input4d = document.getElementById('input4d');
+            const pasteData = document.getElementById('pasteData');
+            const predictionType = document.getElementById('prediction-type');
+            const predictionResult = document.getElementById('predictionResult');
+            const predictionTime = document.getElementById('prediction-time');
+            const linesPrediction = document.getElementById('linesPrediction');
+            const historyList = document.getElementById('predictionHistory');
+            const currentDate = document.getElementById('current-date');
+            const currentTime = document.getElementById('current-time');
+            const aiAnalysis = document.getElementById('aiAnalysis');
+            const statsInfo = document.getElementById('statsInfo');
+            
+            // Variables
+            let predictionHistory = JSON.parse(localStorage.getItem('predictionHistory')) || [];
+            
+            // Initialize
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            updateHistoryDisplay();
+            
+            // Event Listeners
+            predictBtn.addEventListener('click', generatePrediction);
+            resetBtn.addEventListener('click', resetApp);
+            copyBtn.addEventListener('click', copyResults);
+            pasteBtn.addEventListener('click', processPastedData);
+            saveBtn.addEventListener('click', saveHistory);
+            
+            // Functions
+            function updateDateTime() {
+                const now = new Date();
+                currentDate.textContent = `Tanggal: ${formatDate(now)}`;
+                currentTime.textContent = `Jam: ${formatTime(now)}`;
+            }
+            
+            function formatDate(date) {
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+            
+            function formatTime(date) {
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+                const seconds = date.getSeconds().toString().padStart(2, '0');
+                return `${hours}:${minutes}:${seconds}`;
+            }
+            
+            function generatePrediction() {
+                const inputValue = input4d.value.trim();
+                const type = predictionType.value;
+                
+                if (inputValue.length !== 4 || isNaN(inputValue)) {
+                    alert('Harap masukkan 4 digit angka yang valid!');
+                    return;
+                }
+                
+                const now = new Date();
+                const timestamp = formatTime(now) + ' ' + formatDate(now);
+                
+                // Generate predictions based on type
+                let manualPred, aiPred, lines;
+                
+                switch(type) {
+                    case 'ai':
+                        manualPred = '--';
+                        aiPred = generateAIPrediction(inputValue);
+                        lines = generateAI80Lines(inputValue);
+                        break;
+                    case 'combination':
+                        manualPred = inputValue.slice(-2);
+                        aiPred = generateAIPrediction(inputValue);
+                        lines = generateCombined80Lines(inputValue, manualPred, aiPred);
+                        break;
+                    case 'special':
+                        manualPred = generateSpecialPrediction(inputValue);
+                        aiPred = generateAIPrediction(inputValue);
+                        lines = generateSpecial80Lines(inputValue);
+                        break;
+                    default: // standard
+                        manualPred = inputValue.slice(-2);
+                        aiPred = '--';
+                        lines = generateStandard80Lines(inputValue);
+                }
+                
+                // Sort lines numerically
+                lines.sort((a, b) => parseInt(a) - parseInt(b));
+                
+                // Display results
+                displayPredictionResults(manualPred, aiPred, lines, timestamp, type);
+            }
+            
+            function processPastedData() {
+                const pastedText = pasteData.value.trim();
+                if (!pastedText) {
+                    alert('Silakan tempel data 2D 80 line terlebih dahulu!');
+                    return;
+                }
+                
+                // Process pasted data
+                const lines = pastedText.split('*').map(item => item.trim()).filter(item => {
+                    return item.length === 2 && !isNaN(item);
+                });
+                
+                if (lines.length < 80) {
+                    alert(`Hanya ditemukan ${lines.length} angka valid. Pastikan data berisi 80 angka 2D dipisahkan oleh *`);
+                    return;
+                }
+                
+                const now = new Date();
+                const timestamp = formatTime(now) + ' ' + formatDate(now);
+                
+                // Use first 80 numbers only
+                const validLines = lines.slice(0, 80).map(num => num.padStart(2, '0'));
+                
+                // Sort numerically
+                validLines.sort((a, b) => parseInt(a) - parseInt(b));
+                
+                // Display results
+                displayPredictionResults('--', '--', validLines, timestamp, 'paste');
+            }
+            
+            function displayPredictionResults(manualPred, aiPred, lines, timestamp, type) {
+                predictionResult.textContent = manualPred;
+                if (aiPred !== '--') {
+                    predictionResult.textContent += `*${aiPred}`;
+                }
+                predictionTime.textContent = `Dibuat pada: ${timestamp}`;
+                
+                display80Lines(lines, manualPred, aiPred);
+                updateAIAnalysis(lines.join(''), lines);
+                updateStatsInfo(lines);
+                
+                // Add to history
+                const historyItem = {
+                    time: timestamp,
+                    input: type === 'paste' ? 'Data Tempelan' : lines[0].slice(0,4),
+                    type: type,
+                    manualPred: manualPred,
+                    aiPred: aiPred,
+                    lines: lines
+                };
+                
+                predictionHistory.unshift(historyItem);
+                if (predictionHistory.length > 50) {
+                    predictionHistory.pop();
+                }
+                
+                updateHistoryDisplay();
+            }
+            
+            function generateStandard80Lines(input) {
+                const lines = new Set();
+                const digits = input.split('').map(Number);
+                
+                // Generate sequential predictions
+                for (let i = 0; i < 80; i++) {
+                    const n = (digits[0] * 100 + i) % 100;
+                    const value = n.toString().padStart(2, '0');
+                    lines.add(value);
+                }
+                
+                return [...lines];
+            }
+            
+            function generateAI80Lines(input) {
+                const lines = new Set();
+                const digits = input.split('').map(Number);
+                const sum = digits.reduce((a, b) => a + b, 0);
+                const product = digits.reduce((a, b) => a * b, 1) || 1;
+                
+                // AI-powered generation
+                for (let i = 0; i < 200; i++) {
+                    const seed = (i * 997) % 1000;
+                    const val1 = (digits[0] * 13 + digits[1] * 17 + seed) % 100;
+                    const val2 = (digits[2] * 19 + digits[3] * 23 + seed * 2) % 100;
+                    const val3 = (sum * 7 + product * 3 + seed * 5) % 100;
+                    const val4 = (digits[0] * digits[2] + digits[1] * digits[3] + seed) % 100;
+                    
+                    [val1, val2, val3, val4].forEach(val => {
+                        const value = Math.abs(val).toString().padStart(2, '0');
+                        if (value.length === 2) lines.add(value);
+                    });
+                    
+                    if (lines.size >= 80) break;
+                }
+                
+                return [...lines];
+            }
+            
+            function generateCombined80Lines(input, manualPred, aiPred) {
+                const lines = new Set();
+                const digits = input.split('').map(Number);
+                
+                // Combine manual and AI predictions
+                lines.add(manualPred);
+                lines.add(aiPred);
+                
+                // Generate mixed predictions
+                for (let i = 0; i < 100; i++) {
+                    const manualBased = (parseInt(manualPred) + i * 11) % 100;
+                    const aiBased = (parseInt(aiPred) + i * 13) % 100;
+                    const combined = (manualBased + aiBased + i * 17) % 100;
+                    
+                    [manualBased, aiBased, combined].forEach(val => {
+                        const value = val.toString().padStart(2, '0');
+                        lines.add(value);
+                    });
+                    
+                    if (lines.size >= 80) break;
+                }
+                
+                return [...lines];
+            }
+            
+            function generateSpecial80Lines(input) {
+                const lines = new Set();
+                const digits = input.split('').map(Number);
+                const magicNumber = digits[0] * 1000 + digits[1] * 100 + digits[2] * 10 + digits[3];
+                
+                // Special formula generation
+                for (let i = 0; i < 80; i++) {
+                    const val = (magicNumber * (i + 1) * 137) % 100;
+                    const value = Math.abs(val).toString().padStart(2, '0');
+                    lines.add(value);
+                }
+                
+                return [...lines];
+            }
+            
+            function generateAIPrediction(input) {
+                const digits = input.split('').map(Number);
+                const sum = digits.reduce((a, b) => a + b, 0);
+                const product = digits.reduce((a, b) => a * b, 1) || 1;
+                
+                // Complex AI calculation
+                const aiVal = (digits[0] * 17 + digits[1] * 19 + digits[2] * 23 + digits[3] * 29 + sum * 7 + product * 3) % 100;
+                return Math.abs(aiVal).toString().padStart(2, '0');
+            }
+            
+            function generateSpecialPrediction(input) {
+                const digits = input.split('').map(Number);
+                const specialVal = (digits[0] * digits[1] + digits[2] * digits[3] * 3) % 100;
+                return Math.abs(specialVal).toString().padStart(2, '0');
+            }
+            
+            function display80Lines(lines, manualPred, aiPred) {
+                let linesContent = '';
+                for (let i = 0; i < lines.length; i++) {
+                    let line = lines[i];
+                    
+                    if (line === manualPred) {
+                        line = `<span class="highlight">${line}</span>`;
+                    } else if (line === aiPred) {
+                        line = `<span class="ai-highlight">${line}</span>`;
+                    }
+                    
+                    linesContent += line;
+                    if (i < lines.length - 1) {
+                        linesContent += '*';
+                    }
+                }
+                
+                linesPrediction.innerHTML = linesContent;
+            }
+            
+            function updateAIAnalysis(input, lines) {
+                const digits = input.split('').map(Number);
+                const sum = digits.reduce((a, b) => a + b, 0);
+                const evenCount = digits.filter(d => d % 2 === 0).length;
+                
+                // Count frequency of numbers in predictions
+                const freq = {};
+                lines.forEach(num => {
+                    freq[num] = (freq[num] || 0) + 1;
+                });
+                
+                // Find most frequent
+                const mostFrequent = Object.keys(freq).reduce((a, b) => freq[a] > freq[b] ? a : b);
+                
+                aiAnalysis.innerHTML = `
+                    <p><strong>Analisis Input:</strong></p>
+                    <p>Total Digit: ${sum} (${sum % 2 === 0 ? 'Genap' : 'Ganjil'})</p>
+                    <p>Digit Genap: ${evenCount}, Ganjil: ${4 - evenCount}</p>
+                    <p><strong>Pola Prediksi:</strong></p>
+                    <p>Angka terfrequent: <span style="color:var(--primary)">${mostFrequent}</span></p>
+                    <p>Rentang angka: ${Math.min(...lines)} - ${Math.max(...lines)}</p>
+                `;
+            }
+            
+            function updateStatsInfo(lines) {
+                const nums = lines.map(Number);
+                const avg = (nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(1);
+                const median = nums.sort((a, b) => a - b)[Math.floor(nums.length / 2)];
+                
+                statsInfo.innerHTML = `
+                    <p><strong>Statistik Prediksi:</strong></p>
+                    <p>Rata-rata: ${avg}</p>
+                    <p>Median: ${median}</p>
+                    <p>Angka terendah: <span style="color:#FF5252">${Math.min(...nums)}</span></p>
+                    <p>Angka tertinggi: <span style="color:#4CAF50">${Math.max(...nums)}</span></p>
+                `;
+            }
+            
+            function updateHistoryDisplay() {
+                historyList.innerHTML = '';
+                predictionHistory.forEach((item, index) => {
+                    const historyElement = document.createElement('div');
+                    historyElement.className = 'history-item';
+                    historyElement.innerHTML = `
+                        <div><strong>#${index + 1}</strong> [${item.time}]</div>
+                        <div>Input: ${item.input} → 2D: <span style="color:var(--primary)">${item.manualPred}</span>${item.aiPred !== '--' ? `<span style="color:#BB86FC">*${item.aiPred}</span>` : ''}</div>
+                        <div style="font-size:11px;color:var(--gray)">${item.type.toUpperCase()}</div>
+                    `;
+                    historyList.appendChild(historyElement);
+                });
+            }
+            
+            function copyResults() {
+                const linesText = document.getElementById('linesPrediction').textContent;
+                const resultText = `PREDIKSI 2D: ${document.getElementById('predictionResult').textContent}\n80LINE: ${linesText}`;
+                
+                navigator.clipboard.writeText(resultText)
+                    .then(() => alert('Hasil prediksi telah disalin!'))
+                    .catch(err => alert('Gagal menyalin: ' + err));
+            }
+            
+            function saveHistory() {
+                localStorage.setItem('predictionHistory', JSON.stringify(predictionHistory));
+                alert('Riwayat prediksi telah disimpan!');
+            }
+            
+            function resetApp() {
+                input4d.value = '';
+                pasteData.value = '';
+                predictionResult.textContent = '-- --';
+                predictionTime.textContent = '';
+                linesPrediction.innerHTML = 'Hasil prediksi akan muncul di sini...';
+                aiAnalysis.textContent = 'Menunggu analisis...';
+                statsInfo.textContent = 'Menunggu data...';
+            }
+        });
+    </script>
+</body>
+</html>
